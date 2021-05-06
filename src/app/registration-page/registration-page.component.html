@@ -1,0 +1,68 @@
+<mat-card class="form-card">
+    <mat-toolbar color="primary">
+      <mat-card-header class="header">
+          <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
+    </mat-toolbar>
+      <mat-card-content>
+        <form class="login-form" [formGroup]="registerForm">
+          <table class="form-table" cellspacing="0">
+            <tr>
+                <td>
+                  <h3>Please provide details below.</h3>
+                </td>
+              </tr>
+            <tr>
+              <td>
+                <mat-form-field class="form-fields">
+                <input matInput placeholder="First Name" name="First Name" required formControlName="firstName"> 
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+                <td>
+                  <mat-form-field class="form-fields">
+                  <input matInput placeholder="Last Name" name="Last Name" required formControlName="lastName"> 
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="form-fields">
+                  <input matInput placeholder="Email" name="Email" required formControlName="email"> 
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="form-fields">
+                  <input matInput placeholder="Age" name="age" required formControlName="age"> 
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="form-fields">
+                  <input matInput placeholder="Driving License" name="Driving License" required formControlName="drivingLicense"> 
+                  </mat-form-field>
+                </td>
+              </tr>
+            <tr>
+            <td>
+                <mat-form-field class="form-fields">
+              <input matInput placeholder="Password" type="password" name="password" required formControlName="password">
+            </mat-form-field>
+        </td>
+          </tr>
+          <tr>
+            <td>
+              <a [routerLink]="['/app-login-page']" routerLinkActive="router-link-active" >already a user?</a>
+            </td>
+          </tr>
+        </table>
+        </form>
+        <mat-card-actions>
+        <button mat-raised-button color="accent" [disabled]="!registerForm.valid">Sign up</button>
+      </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
