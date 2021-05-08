@@ -6,7 +6,7 @@
     </mat-toolbar>
       <mat-card-content>
         <form class="login-form" [formGroup]="registerForm">
-          <table class="form-table" cellspacing="0">
+          <table class="form-table" cellspacing="9">
             <tr>
                 <td>
                   <h3>Please provide details below.</h3>
@@ -15,7 +15,8 @@
             <tr>
               <td>
                 <mat-form-field class="form-fields">
-                <input matInput placeholder="First Name" name="First Name" required formControlName="firstName"> 
+                <input matInput placeholder="First Name" name="First Name" required formControlName="firstName">
+                <mat-error *ngIf="registerForm.get('firstName').invalid">{{getErrorMessage()}}</mat-error> 
                 </mat-form-field>
               </td>
             </tr>
@@ -23,27 +24,31 @@
                 <td>
                   <mat-form-field class="form-fields">
                   <input matInput placeholder="Last Name" name="Last Name" required formControlName="lastName"> 
+                  <mat-error *ngIf="registerForm.get('lastName').invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <mat-form-field class="form-fields">
+                  <input matInput placeholder="Email" name="Email" required formControlName="email">
+                  <mat-error *ngIf="registerForm.get('email').invalid">{{getErrorMessageEmail()}}</mat-error> 
                   </mat-form-field>
                 </td>
               </tr>
               <tr>
                 <td>
                   <mat-form-field class="form-fields">
-                  <input matInput placeholder="Email" name="Email" required formControlName="email"> 
+                  <input matInput placeholder="Age" name="age" required formControlName="age">
+                  <mat-error *ngIf="registerForm.get('age').invalid">{{getErrorMessageAge()}}</mat-error> 
                   </mat-form-field>
                 </td>
               </tr>
               <tr>
                 <td>
                   <mat-form-field class="form-fields">
-                  <input matInput placeholder="Age" name="age" required formControlName="age"> 
-                  </mat-form-field>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <mat-form-field class="form-fields">
-                  <input matInput placeholder="Driving License" name="Driving License" required formControlName="drivingLicense"> 
+                  <input matInput placeholder="Driving License" name="Driving License" required formControlName="drivingLicense">
+                  <mat-error *ngIf="registerForm.get('drivingLicense').invalid">{{getErrorMessage()}}</mat-error> 
                   </mat-form-field>
                 </td>
               </tr>
@@ -51,6 +56,7 @@
             <td>
                 <mat-form-field class="form-fields">
               <input matInput placeholder="Password" type="password" name="password" required formControlName="password">
+              <mat-error *ngIf="registerForm.get('password').invalid">{{getErrorMessagePassword()}}</mat-error>
             </mat-form-field>
         </td>
           </tr>
@@ -62,7 +68,7 @@
         </table>
         </form>
         <mat-card-actions>
-        <button mat-raised-button color="accent" [disabled]="!registerForm.valid">Sign up</button>
+        <button mat-raised-button color="accent" [disabled]="!registerForm.valid" id="singUpBtn">Sign up</button>
       </mat-card-actions>
       </mat-card-content>
     </mat-card>
