@@ -3,6 +3,7 @@ import { Validators,FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { user } from '../models/user';
 import { LoginService} from '../service/login.service';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login-page',
@@ -15,6 +16,8 @@ export class LoginPageComponent implements OnInit {
   allUser : user[];
   errorMessage : string = "";
   authUser : boolean;
+  horizontal: MatSnackBarHorizontalPosition = 'center';
+  vertical: MatSnackBarVerticalPosition = 'top';
 
   ngOnInit(): void {
    
@@ -24,36 +27,31 @@ export class LoginPageComponent implements OnInit {
           this.allUser = data;
       }  ,(error)=>{
         console.log(error);
-          this.errorMessage = "Internal Server Error. Please try again later.";
-          
+          // this.errorMessage = "Internal Server Error. Please try again later.";
+          this._snackBar.open('Internal Server Error. Please try again later','',{});
       }      
       )
       ;
 
   }
 
-  constructor(private loginService : LoginService, private router: Router) { }
+  constructor(private loginService : LoginService, private router: Router, private _snackBar: MatSnackBar) { }
   
-  // loginForm = new FormGroup({
-  //   userName: new FormControl('', Validators.required),
-  //   userPassword: new FormControl('', Validators.required)
-  // })
+  loginForm = new FormGroup({
+    userEmail: new FormControl('', [Validators.required, Validators.email]),
+    userPassword: new FormControl('', Validators.required)
+  })
 
-  
-
-  userName = new FormControl('', [Validators.required]);
-  userPassword = new FormControl('', [Validators.required]);
 
   getErrorMessage() {
-    if (this.userName.hasError('required')) {
+    if (this.loginForm.get('userEmail').hasError('required')) {
       return 'You must enter a value';
     }
-
-    // return this.userName.hasError('email') ? 'Not a valid email' : '';
+    return this.loginForm.get('userEmail').hasError('email') ? 'Not a valid email' : '';
   }
 
   getErrorPassword() {
-    if (this.userPassword.hasError('required')) {
+    if (this.loginForm.get('userPassword').hasError('required')) {
       return 'You must enter a value';
     }
   }
@@ -67,11 +65,10 @@ export class LoginPageComponent implements OnInit {
     this.allUser.forEach(
       user =>
       {
-        console.log(user);
-        console.log('checking form value ' + this.userName.value + this.userPassword.value);
-        if (user.name.match(this.userName.value) && user.password.match(this.userPassword.value)) {
+        // console.log(user);
+        console.log('checking form value ' + this.loginForm.get('userEmail').value + this.loginForm.get('userPassword').value);
+        if (user.email.match(this.loginForm.get('userEmail').value) && user.password.match(this.loginForm.get('userPassword').value)) {
           // user found, validate
-          console.log('entered here bitch')
             this.authUser = true;
         }
       }
@@ -79,15 +76,18 @@ export class LoginPageComponent implements OnInit {
     
     if (this.authUser == true) {
       // move to homepage
-      console.log('User' + this.userName +  'is now logged in')
-      this.router.navigate(['/app-home-page']);
+      console.log('User' + this.loginForm.get('userEmail').value +  'is now logged in');
+      this._snackBar.open('Login successful', 'OK',{}).afterDismissed().subscribe(()=>{
+        this.router.navigate(['/app-home-page']);
+      });
     }
     else {
       // display error message
       this.errorMessage = 'Username or password is wrong, please try again';
+      this._snackBar.open('Login Unsuccessful', 'OK',{});
     }
     
-    
+
 
 
   }

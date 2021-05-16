@@ -1,52 +1,28 @@
-<!-- <div class="content">
-  <mat-toolbar color="primary">
-    <span>AutoRental</span>
-    <span class="spacer"></span>
-    <button mat-icon-button class="example-icon navbar-toggle" aria-label="Example icon-button with menu icon" data-toggle="collapse" data-target="#myNavbar">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <div class="collapse navbar-collapse" id="myNavbar">
-        <button mat-flat-button color="primary" routerLink="/app-home-page">Home</button>
-        <button mat-flat-button color="primary" routerLink="/app-login-page">Login</button>
-        <button mat-flat-button color="primary" routerLink="/app-registration-page">Register</button>
-        <button mat-flat-button color="primary" routerLink="/app-login-page">Dashboard</button>
-        <button mat-flat-button color="primary" routerLink="/app-login-page">About us</button>
-    </div>
-  </mat-toolbar> -->
-  
-  <!-- Add Content Here -->
+<nav class="navbar navbar-expand-md navbar-dark" style="background:#3f51b5;">
+  <a class="navbar-brand" [routerLink]="['/app-home-page']" routerLinkActive="router-link-active"><strong>AutoRental</strong></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/app-home-page">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/app-login-page">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/app-registration-page">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Dashboard</a>
+      </li>    
+      <li class="nav-item">
+        <a class="nav-link" href="#">About us</a>
+      </li>  
+    </ul>
+  </div>         
+</nav>
 
-  <nav class="navbar navbar-expand-md navbar-dark" style="background:#3f51b5;">
-
-    <a class="navbar-brand" href="#"><strong> Auto Rental Portal</strong></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          
-        
-          <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/app-home-page">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/app-login-page">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/app-registration-page">Register</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Dashboard</a>
-              </li>    
-              <li class="nav-item">
-                <a class="nav-link" href="#">About us</a>
-              </li>  
-            </ul>
-          </div>  
-  </nav>
-
-<router-outlet></router-outlet>
-
-<!-- </div> -->
-      
+<router-outlet></router-outlet>      

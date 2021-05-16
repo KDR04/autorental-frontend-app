@@ -1,6 +1,6 @@
 export class user {
     
-    name:string;
+    firstname:string;
 
     lastname:string;
 
@@ -13,5 +13,9 @@ export class user {
     drivinglicense:string;
     
     id:number;
+
+    phonenumber:string;
+
+
     
 }

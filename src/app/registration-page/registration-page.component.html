@@ -1,57 +1,58 @@
-<div class="container-fluid">
-  <div class="container">
+<mat-grid-list cols="1" rowHeight="900px">
+  <mat-grid-tile>
     <mat-card class="form-card">
-      <mat-toolbar color="primary" role="header">
+      <mat-toolbar color="primary">
         <mat-card-header class="header">
-            <mat-card-title>Register</mat-card-title>
+          <mat-card-title><div class="title">REGISTER</div></mat-card-title>
         </mat-card-header>
       </mat-toolbar>
         <mat-card-content>
+          <span><h2>Please provide details below.</h2></span>
+            <span><strong>Note: All the fields are required</strong></span>
+
           <form class="registration-form" [formGroup]="registerForm">
+            <mat-form-field class="form-fields">
+              <input matInput placeholder="First Name" name="First Name" required formControlName="firstName">
+              <mat-error *ngIf="registerForm.get('firstName').invalid">{{getErrorMessage()}}</mat-error> 
+            </mat-form-field>
+    
+            <mat-form-field class="form-fields">
+              <input matInput placeholder="Last Name" name="Last Name" required formControlName="lastName"> 
+              <mat-error *ngIf="registerForm.get('lastName').invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class="form-fields">
+              <input matInput placeholder="Email" name="Email" required formControlName="email">
+              <mat-error *ngIf="registerForm.get('email').invalid">{{getErrorMessageEmail()}}</mat-error> 
+            </mat-form-field>
            
-                   <span>
-                    <h2>Please provide details below.</h2>
-                   </span> 
-              
-                  <mat-form-field class="form-fields">
-                  <input matInput placeholder="First Name" name="First Name" required formControlName="firstName">
-                  <mat-error *ngIf="registerForm.get('firstName').invalid">{{getErrorMessage()}}</mat-error> 
-                  </mat-form-field>
-          
-                    <mat-form-field class="form-fields">
-                    <input matInput placeholder="Last Name" name="Last Name" required formControlName="lastName"> 
-                    <mat-error *ngIf="registerForm.get('lastName').invalid">{{getErrorMessage()}}</mat-error>
-                  </mat-form-field>
-                
-                    <mat-form-field class="form-fields">
-                    <input matInput placeholder="Email" name="Email" required formControlName="email">
-                    <mat-error *ngIf="registerForm.get('email').invalid">{{getErrorMessageEmail()}}</mat-error> 
-                    </mat-form-field>
-                 
-                    <mat-form-field class="form-fields">
-                    <input matInput placeholder="Age" name="age" required formControlName="age">
-                    <mat-error *ngIf="registerForm.get('age').invalid">{{getErrorMessageAge()}}</mat-error> 
-                    </mat-form-field>
-               
-                    <mat-form-field class="form-fields">
-                    <input matInput placeholder="Driving License" name="Driving License" required formControlName="drivingLicense">
-                    <mat-error *ngIf="registerForm.get('drivingLicense').invalid">{{getErrorMessage()}}</mat-error> 
-                    </mat-form-field>
-            
-                  <mat-form-field class="form-fields">
-                <input matInput placeholder="Password" type="password" name="password" required formControlName="password">
-                <mat-error *ngIf="registerForm.get('password').invalid">{{getErrorMessagePassword()}}</mat-error>
-              </mat-form-field>
-        
-                <span id="userLogin">
-                  <a [routerLink]="['/app-login-page']" routerLinkActive="router-link-active" >already a user? Click</a>
-                </span>
+            <mat-form-field class="form-fields">
+              <input matInput placeholder="Age" name="age" required formControlName="age">
+              <mat-error *ngIf="registerForm.get('age').invalid">{{getErrorMessageAge()}}</mat-error> 
+            </mat-form-field>
+
+            <mat-form-field class="form-fields">
+              <input matInput placeholder="Phone Number" name="Phone Number" required formControlName="phoneNumber">
+              <mat-error *ngIf="registerForm.get('password').invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+         
+            <mat-form-field class="form-fields">
+              <input matInput placeholder="Driving License" name="Driving License" required formControlName="drivingLicense">
+              <mat-error *ngIf="registerForm.get('drivingLicense').invalid">{{getErrorMessage()}}</mat-error> 
+            </mat-form-field>
       
+            <mat-form-field class="form-fields">
+              <input matInput placeholder="Password" type="password" name="password" required formControlName="password">
+              <mat-error *ngIf="registerForm.get('password').invalid">{{getErrorMessagePassword()}}</mat-error>
+            </mat-form-field>
+  
+            
           </form>
           <mat-card-actions>
-          <button mat-raised-button color="accent" [disabled]="!registerForm.valid" id="singUpBtn">Sign up</button>
-        </mat-card-actions>
+            <span id="userLogin"><a [routerLink]="['/app-login-page']"  routerLinkActive="router-link-active" >already a user? Click</a></span>
+            <button mat-raised-button color="accent"  [disabled]="!registerForm.valid" id="singUpBtn" (click)="registerUser()">Sign up</button>
+          </mat-card-actions>
         </mat-card-content>
       </mat-card>
-  </div>
-</div>
+  </mat-grid-tile>
+</mat-grid-list>    

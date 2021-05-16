@@ -11,11 +11,12 @@ const routes: Routes = [
   { path: 'app-navbar', component: NavbarComponent},
   { path: 'app-search', component: SearchComponent},
   { path: 'app-login-page', component: LoginPageComponent},
-  { path: 'app-registration-page', component: RegistrationPageComponent}
+  { path: 'app-registration-page', component: RegistrationPageComponent},
+  { path: '', redirectTo: 'app-login-page', pathMatch: 'full' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

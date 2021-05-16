@@ -1,42 +1,34 @@
-<div class="container">
-<div class="login-component">
-  <mat-card class="form-card">
+<mat-grid-list cols="1" rowHeight ="500px">
+  <mat-grid-tile>
+    <mat-card class="form-card">
       <mat-toolbar color="primary">
         <mat-card-header class="header">
-          <mat-card-title>Login</mat-card-title>         
+          <mat-card-title><div class="title">LOGIN</div></mat-card-title>         
         </mat-card-header>
       </mat-toolbar>
       <mat-card-content>
-        <form class="login-form">
-
-          <span>
-            <h2>Please provide your details below.</h2>
-          </span>
-
+        <form class="login-form" [formGroup]="loginForm">
+          <span><h2>Please provide your details below.</h2></span>
           <strong><span style="color: red;">{{errorMessage}}</span></strong>
         
             <mat-form-field class="form-fields">
-            <input matInput placeholder="Username" name="username" required [formControl]="userName"> 
-            <mat-error *ngIf="userName.invalid">{{getErrorMessage()}}</mat-error>
-          </mat-form-field>
+              <input matInput placeholder="Username" name="userEmail" required formControlName="userEmail"> 
+              <mat-error *ngIf="this.loginForm.get('userEmail').invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
           
           <mat-form-field class="form-fields">
-            <input matInput placeholder="Password" type="password" name="password" required [formControl]="userPassword">
-            <mat-error *ngIf="userPassword.invalid">{{getErrorPassword()}}</mat-error>
+            <input matInput placeholder="Password" type="password" name="password" required formControlName="userPassword">
+            <mat-error *ngIf="this.loginForm.get('userPassword').invalid">{{getErrorPassword()}}</mat-error>
           </mat-form-field>
-      
-          <span>
-            <a>Forgot password?</a>
-          </span>
-
+          <span><a>Forgot password?</a></span>
         </form>
         <mat-card-actions>
-        <button mat-raised-button color="accent" type="submit" [disabled]="!userName.valid">Login</button>
+        <button mat-raised-button color="accent" type="submit" [disabled]="!loginForm.valid" (click)="validateLogin()">Login</button>
       </mat-card-actions>
       <mat-card-actions>
-        <button mat-raised-button color="accent" type="submit" [routerLink]="['/app-registration-page']" routerLinkActive="router-link-active" >Not registered?</button>
+        <button mat-raised-button color="accent" type="submit" [routerLink]="['/app-registration-page']" routerLinkActive="router-link-active">Not registered?</button>
       </mat-card-actions>
       </mat-card-content>
     </mat-card>
-</div>
-</div>
+  </mat-grid-tile>
+</mat-grid-list>    
