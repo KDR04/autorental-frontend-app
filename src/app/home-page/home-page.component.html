@@ -1,11 +1,22 @@
-<mat-grid-list cols="1" rowHeight="500px">
+<mat-grid-list cols="1" rowHeight="100px">
+    <mat-card-title>
+        <span id="heading">Select a vehicle type</span>
+    </mat-card-title>
+</mat-grid-list>
+<mat-grid-list cols="3" rowHeight="2:1">
     <mat-grid-tile>
-        <div class="carousel-container"> this is carousel.</div>
+        <mat-card-content>
+            <button mat-raised-button>Cars</button>
+        </mat-card-content>
     </mat-grid-tile>
     <mat-grid-tile>
-        <div class="welcome-container"> this is for welcome text and some span</div>
+        <mat-card-content>
+            <button mat-raised-button>Bikes</button>
+        </mat-card-content>
     </mat-grid-tile>
     <mat-grid-tile>
-        <div class="vehicle-container"> this is for dislaying types of vehichle we rent</div>
+        <mat-card-content>
+            <button mat-raised-button>Bicycles</button>
+        </mat-card-content>
     </mat-grid-tile>
 </mat-grid-list>

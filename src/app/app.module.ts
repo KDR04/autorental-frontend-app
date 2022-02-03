@@ -23,6 +23,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CarPageComponent } from './car-page/car-page.component';
+import { BikePageComponent } from './bike-page/bike-page.component';
+import { BicyclePageComponent } from './bicycle-page/bicycle-page.component';
 
 
 @NgModule({
@@ -32,7 +35,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     LoginPageComponent,
     RegistrationPageComponent,
     SearchComponent,
-    NavbarComponent
+    NavbarComponent,
+    CarPageComponent,
+    BikePageComponent,
+    BicyclePageComponent
   ],
   imports: [
     BrowserModule,

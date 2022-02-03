@@ -10,7 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 export class LoginService {
 
   user : user[];
-  backendServerBaseUrl = 'http://192.168.0.15:8081/v1/';
+  backendServerBaseUrl = 'http://localhost:8081/v1/';
   constructor(private http : HttpClient) { }
 
 
@@ -38,6 +38,23 @@ export class LoginService {
     console.log(JSON.stringify(user));
 
     return this.http.post(this.backendServerBaseUrl + 'registerUser', user)
+    .pipe(map((resp)=>{
+        
+        return this.handleResponse(resp);
+        
+        
+    }),catchError((error)=>{
+            
+        return Observable.throw("Server Communication Failed");
+    }))
+  }
+
+
+  userLogin(user: user):Observable<Boolean>{
+
+    console.log(JSON.stringify(user));
+
+    return this.http.post(this.backendServerBaseUrl + 'userLogin', user)
     .pipe(map((resp)=>{
         
         return this.handleResponse(resp);

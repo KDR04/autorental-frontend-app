@@ -27,11 +27,9 @@ export class LoginPageComponent implements OnInit {
           this.allUser = data;
       }  ,(error)=>{
         console.log(error);
-          // this.errorMessage = "Internal Server Error. Please try again later.";
           this._snackBar.open('Internal Server Error. Please try again later','',{});
       }      
-      )
-      ;
+      );
 
   }
 
@@ -62,17 +60,38 @@ export class LoginPageComponent implements OnInit {
 
   validateLogin() {
 
-    this.allUser.forEach(
-      user =>
-      {
-        // console.log(user);
-        console.log('checking form value ' + this.loginForm.get('userEmail').value + this.loginForm.get('userPassword').value);
-        if (user.email.match(this.loginForm.get('userEmail').value) && user.password.match(this.loginForm.get('userPassword').value)) {
-          // user found, validate
+
+    let currUser = new user()
+    currUser.email = this.loginForm.get('userEmail').value
+    currUser.password = this.loginForm.get('userPassword').value
+
+    // this.allUser.forEach(
+    //   user =>
+    //   {
+    //     // console.log(user);
+    //     console.log('checking form value ' + this.loginForm.get('userEmail').value + this.loginForm.get('userPassword').value);
+    //     if (user.email.match(this.loginForm.get('userEmail').value) && user.password.match(this.loginForm.get('userPassword').value)) {
+    //       // user found, validate
+    //         this.authUser = true;
+    //     }
+    //   }
+    // )
+    
+
+    this.loginService.userLogin(currUser).subscribe(
+      (data)=> {
+          console.log("checking login data "+data);
+          if (data == true){
             this.authUser = true;
-        }
-      }
-    )
+          }
+      }  ,(error)=>{
+        console.log(error);
+          this._snackBar.open('Internal Server Error. Please try again later','',{});
+      }      
+      );
+
+
+
     
     if (this.authUser == true) {
       // move to homepage
